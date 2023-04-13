@@ -1,0 +1,17 @@
+<h1>Users go here!</h1>
+
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <%= user.name %>
+      <ol>
+        <% tools = user.tools %>
+        <% tools.each do |tool| %>
+          <li>
+            <%= tool.name %>
+          </li>
+        <% end %>
+      </ol><br>
+    </li>
+  <% end %>
+</ul>

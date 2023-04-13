@@ -1,0 +1,15 @@
+<h1><%= @tool.name %></h1>
+
+<p><%= "Category: #{Category.find(@tool.category_id).name}" %></p>
+
+<% if @tool.users.empty? %>
+  <p>No users for this tool!</p>
+<% else %>
+  <ul>
+    <% @tool.users.each do |user| %>
+      <li>
+        <%= user.name %>
+      </li><br>
+    <% end %>
+  </ul>
+<% end %>

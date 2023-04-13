@@ -1,0 +1,18 @@
+<h1>Categories</h1>
+<p>Something to come here later</p><br>
+
+<ul>
+  <% @categories.each do |category| %>
+    <li>
+      <%= category.name %>
+      <ol>
+        <% tools = Tool.where(category_id: category.id) %>
+        <% tools.each do |tool| %>
+        <li>
+          <%= tool.name %>
+        </li>
+        <% end %>
+      </ol><br>
+    </li>
+  <% end %>
+</ul>

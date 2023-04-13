@@ -1,0 +1,25 @@
+<h1>Tools</h1>
+<p>Nothing here yet</p>
+
+<ul>
+  <% @tools.each do |tool| %>
+  <li>
+    <%= link_to tool.name, tool %><br>
+  </li><br>
+  <% end %>
+</ul>
+
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
+<h2>Add new tool to list</h2>
+<%= form_with model: Tool.new do |form| %>
+  <%= form.label :name %><br>
+  <%= form.text_field :name %><br>
+  <%= form.label :category_id %><br>
+  <%= form.select :category_id, Category.all.pluck(:name, :id), { include_blank: true } %>
+  <%= form.submit %>
+<% end %>
