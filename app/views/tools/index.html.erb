@@ -1,13 +1,27 @@
-<h1>Tools</h1>
-<p>Nothing here yet</p>
-
-<ul>
+<table>
+  <tr>
+    <th>Tool Name</th>
+    <th>Users</th>
+    <th>Category</th>
+  </tr>
   <% @tools.each do |tool| %>
-  <li>
-    <%= link_to tool.name, tool %><br>
-  </li><br>
+    <tr>
+      <td><%= link_to tool.name, tool %></td>
+      <td><%= tool.users.count %></td>
+      <td><%= tool.category.name %></td>
+    </tr>
   <% end %>
-</ul>
+</table>
+
+<!--<h2>Unassigned Tools</h2>-->
+<%# unassigned_tools = @tools.select { |tool| tool.users.empty? } %>
+<!--<ul>-->
+  <%# unassigned_tools.each do |tool| %>
+<!--    <li>-->
+<!--      <%#= link_to tool.name, tool %><br>-->
+<!--    </li><br>-->
+  <%# end %>
+<!--</ul>-->
 
 <% flash.each do |type, msg| %>
   <div>
@@ -15,7 +29,7 @@
   </div>
 <% end %>
 
-<h2>Add new tool to list</h2>
+<h2>Add New Tool</h2>
 <%= form_with model: Tool.new do |form| %>
   <%= form.label :name %><br>
   <%= form.text_field :name %><br>

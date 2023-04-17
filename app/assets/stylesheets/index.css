@@ -1,0 +1,7 @@
+tr {
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #D6EEEE;
+}

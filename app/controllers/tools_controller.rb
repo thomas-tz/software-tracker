@@ -13,10 +13,17 @@ class ToolsController < ApplicationController
     if @tool.save
       redirect_to tools_path
     else
-      # @tools = Tool.all
-      # render :index, status: :unprocessable_entity
       redirect_to tools_path, alert: @tool.errors.full_messages.to_s
+    end
+  end
 
+  def update
+    @tool = Tool.find(params[:id])
+
+    if @tool.update(tool_params)
+      redirect_to @tool
+    else
+      redirect_to @tool, alert: @tool.errors.full_messages.to_s
     end
   end
 

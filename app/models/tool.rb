@@ -1,6 +1,7 @@
 class Tool < ApplicationRecord
   belongs_to :category
-  has_and_belongs_to_many :users
+  has_many :tool_users
+  has_many :users, through: :tool_users
 
   validates :name, presence: true
   validates :category_id, presence: true

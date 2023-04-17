@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :tools, only: [:index, :show, :create]
-  resources :users, only: [:index]
+  resources :tool_users, only: [:create, :destroy]
+
+  resources :users, only: [:index, :show, :create]
   resources :categories, only: [:index]
 end

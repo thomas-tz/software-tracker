@@ -13,3 +13,35 @@
  *= require_tree .
  *= require_self
  */
+
+.container {
+    width: max-content;
+    margin: auto;
+}
+
+header::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+nav {
+    float: center;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav li {
+    display: inline-block;
+    margin-left: 70px;
+    padding-top: 35px;
+}
+
+nav a {
+    text-decoration: none;
+    text-transform: uppercase;
+}

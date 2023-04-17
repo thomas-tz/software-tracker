@@ -1,0 +1,28 @@
+<h1><%= @user.name %></h1>
+
+<% if @user.tools.empty? %>
+  <p>This guy doesn't use any tools!</p>
+<% else %>
+  <ul>
+    <% @user.tools.each do |tool| %>
+      <li>
+        <%= tool.name %>
+        <%= button_to '[X]', tool_user_path(ToolUser.find_by(tool_id: tool.id, user_id: @user.id)), method: :delete %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
+<p>Add tools to this user here:</p>
+<%= form_with url: tool_users_path do |form| %>
+  <%= form.label :tool, "Tool" %><br>
+  <%= form.collection_select :tool, Tool.select { |tool| !@user.tools.include?(tool) }, :id, :name %>
+  <%= form.hidden_field  :user, :value => @user.id %>
+  <%= form.submit %>
+<% end %>

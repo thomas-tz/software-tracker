@@ -9,7 +9,22 @@
     <% @tool.users.each do |user| %>
       <li>
         <%= user.name %>
-      </li><br>
+        <%= button_to '[X]', tool_user_path(ToolUser.find_by(tool_id: @tool.id, user_id: user.id)), method: :delete %>
+      </li>
     <% end %>
   </ul>
+<% end %>
+
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
+<p>Add users to this tool here:</p>
+<%= form_with url: tool_users_path do |form| %>
+  <%= form.label :user, "User" %><br>
+  <%= form.collection_select :user, User.select { |user| !@tool.users.include?(user) }, :id, :name %>
+  <%= form.hidden_field  :tool, :value => @tool.id %>
+  <%= form.submit %>
 <% end %>
