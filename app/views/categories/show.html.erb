@@ -1,0 +1,37 @@
+<h1><%= @category.name %></h1>
+
+<% if @category.tools.empty? %>
+  <p>No tools belong to this category!</p>
+<% else %>
+  <table>
+    <tr>
+      <th>Tool Name</th>
+      <th>Users</th>
+      <th></th>
+    </tr>
+    <% @category.tools.each do |tool| %>
+      <tr>
+        <td><%= tool.name %></td>
+        <td><%= tool.users.count %></td>
+        <td>
+          <%= button_to '[X]', tool_path(tool.id), method: :patch, params: { tool: { category_id: nil } } %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<% flash.each do |type, msg| %>
+  <div>
+    <p><%= type %></p>
+    <p><%= msg %></p>
+  </div>
+<% end %>
+
+<p>Add tools to this category here:</p>
+<%= form_with model: Tool, method: :patch do |form| %>
+  <%= form.label :tool, 'Tool' %><br>
+  <%= form.collection_select :id, Tool.select { |tool| !@category.tools.include?(tool) }, :id, :name %>
+  <%= form.hidden_field  :category_id, :value => @category.id %>
+  <%= form.submit 'Add Tool'%>
+<% end %>

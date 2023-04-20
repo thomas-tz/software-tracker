@@ -1,13 +1,11 @@
 class ToolUsersController < ApplicationController
   def create
-    tool_user = ToolUser.new
-    tool_user.tool_id = params[:tool]
-    tool_user.user_id = params[:user]
+    tool_user = ToolUser.new(tool_user_params)
 
     if tool_user.save
       redirect_to request.referer
     else
-      redirect_to request.referer, alert: tool.errors.full_messages.to_s
+      redirect_to request.referer, alert: tool_user.errors.full_messages.to_s
     end
   end
 
@@ -15,5 +13,10 @@ class ToolUsersController < ApplicationController
     tool_user = ToolUser.find(params[:id])
     tool_user.destroy
     redirect_to request.referer
+  end
+
+  private
+  def tool_user_params
+    params.require(:tool_user).permit(:user_id, :tool_id)
   end
 end

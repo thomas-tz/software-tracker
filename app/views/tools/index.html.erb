@@ -2,30 +2,21 @@
   <tr>
     <th>Tool Name</th>
     <th>Users</th>
-    <th>Category</th>
+<!--    <th>Category</th>-->
   </tr>
   <% @tools.each do |tool| %>
     <tr>
       <td><%= link_to tool.name, tool %></td>
-      <td><%= tool.users.count %></td>
-      <td><%= tool.category.name %></td>
+      <td><%= @user_count[tool.id] %></td>
+<!--      <td><%#= tool.category.name %></td>-->
     </tr>
   <% end %>
 </table>
 
-<!--<h2>Unassigned Tools</h2>-->
-<%# unassigned_tools = @tools.select { |tool| tool.users.empty? } %>
-<!--<ul>-->
-  <%# unassigned_tools.each do |tool| %>
-<!--    <li>-->
-<!--      <%#= link_to tool.name, tool %><br>-->
-<!--    </li><br>-->
-  <%# end %>
-<!--</ul>-->
-
 <% flash.each do |type, msg| %>
   <div>
-    <%= msg %>
+    <p><%= type %></p>
+    <p><%= msg %></p>
   </div>
 <% end %>
 

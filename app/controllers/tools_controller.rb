@@ -1,10 +1,13 @@
 class ToolsController < ApplicationController
   def index
     @tools = Tool.all
+    @user_count = Tool.joins(:tool_users).group(:tool_id).count
+
   end
 
   def show
-    @tool = Tool.find(params[:id])
+    @tool = Tool.includes(:users).find(params[:id])
+    @users_not_subscribed = User.not_subscribed(@tool)
   end
 
   def create
@@ -21,9 +24,9 @@ class ToolsController < ApplicationController
     @tool = Tool.find(params[:id])
 
     if @tool.update(tool_params)
-      redirect_to @tool
+      redirect_to tool_path
     else
-      redirect_to @tool, alert: @tool.errors.full_messages.to_s
+      redirect_to tool_path, alert: @tool.errors.full_messages.to_s
     end
   end
 
