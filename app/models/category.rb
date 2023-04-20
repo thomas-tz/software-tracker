@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  has_many :tools
+  has_many :tools, dependent: :nullify
 
-  accepts_nested_attributes_for :tools
+  validates :name, presence: true
 end

@@ -1,0 +1,25 @@
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Tools</th>
+    <th>Users</th>
+  </tr>
+  <% categories.each do |category| %>
+    <tr>
+      <td><%= link_to category.name, category %></td>
+      <td>
+        <% if category.tools.empty? %>
+          No tools!
+        <% end %>
+        <% category.tools.each do |tool| %>
+          <div><%= link_to tool.name, tool %></div>
+        <% end %>
+      </td>
+      <td>
+        <% category.tools.each do |tool| %>
+          <div><%= tool_user_count[tool.id].nil? ? 0 : tool_user_count[tool.id] %></div>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

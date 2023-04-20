@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Tools</th>
+  </tr>
+  <% users.each do |user| %>
+    <tr>
+      <td><%= link_to user.full_name, user %></td>
+      <td><%= tool_count[user.id].nil? ? 0 : tool_count[user.id] %></td>
+    </tr>
+  <% end %>
+</table>

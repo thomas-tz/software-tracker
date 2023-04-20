@@ -1,31 +1,9 @@
-<h1><%= @tool.name %></h1>
-
-<% if @tool.category.nil?
-     category = "Unknown"
-   else
-     category = Category.find(@tool.category_id)
-   end %>
-
-<p>Category: <%= category %></p>
+<h2><%= @tool.name %> | <%= @tool.category.nil? ? 'Uncategorized' : @tool.category.name %></h2>
 
 <% if @tool.users.empty? %>
   <p>No users for this tool!</p>
 <% else %>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th></th>
-    </tr>
-    <% @tool.users.each do |user| %>
-      <tr>
-        <td><%= user.full_name %></td>
-        <td>
-          <% tool_user = @tool.tool_users.find { |tu| tu.user_id == user.id } %>
-          <%= button_to '[X]', tool_user_path(tool_user.id), method: :delete %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+  <%= render 'table', tool: @tool %>
 <% end %>
 
 <% flash.each do |type, msg| %>
@@ -33,10 +11,8 @@
     <p><%= msg %></p>
   </div>
 <% end %>
-
-<p>Add users to this tool here:</p>
+<br>
 <%= form_with model: ToolUser.new do |form| %>
-  <%= form.label :user, 'User' %><br>
   <%= form.collection_select :user_id, @users_not_subscribed, :id, :full_name %>
   <%= form.hidden_field  :tool_id, :value => @tool.id %>
   <%= form.submit 'Add User'%>

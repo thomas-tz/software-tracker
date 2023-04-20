@@ -1,24 +1,9 @@
-<h1><%= @category.name %></h1>
+<h2><%= @category.name %></h2>
 
 <% if @category.tools.empty? %>
   <p>No tools belong to this category!</p>
 <% else %>
-  <table>
-    <tr>
-      <th>Tool Name</th>
-      <th>Users</th>
-      <th></th>
-    </tr>
-    <% @category.tools.each do |tool| %>
-      <tr>
-        <td><%= tool.name %></td>
-        <td><%= tool.users.count %></td>
-        <td>
-          <%= button_to 'X', category_tool_path(tool.id), method: :delete %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+  <%= render 'table', category: @category, tool_user_count: @tool_user_count %>
 <% end %>
 
 <% flash.each do |type, msg| %>
@@ -27,10 +12,8 @@
     <p><%= msg %></p>
   </div>
 <% end %>
-
-<p>Add tools to this category here:</p>
+<br>
 <%= form_with url: category_tool_path, method: :patch do |form| %>
-  <%= form.label :tool, 'Tool' %><br>
   <%= form.collection_select :tool_id, @tools_not_in_category, :id, :name %>
   <%= form.submit 'Add Tool'%>
 <% end %>

@@ -8,6 +8,7 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.includes(:tools).find(params[:id])
     @tools_not_in_category = Tool.not_in_category(@category)
+    @tool_user_count = Tool.user_counts
   end
 
   def create
@@ -18,6 +19,13 @@ class CategoriesController < ApplicationController
     else
       redirect_to categories_path, alert: @category.errors.full_messages.to_s
     end
+  end
+
+  def destroy
+    @category = Category.find(params[:id])
+    @category.destroy
+
+    redirect_to categories_path, status: :see_other
   end
 
   private

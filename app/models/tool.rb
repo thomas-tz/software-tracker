@@ -1,7 +1,7 @@
 class Tool < ApplicationRecord
   belongs_to :category, optional: true
   has_many :tool_users
-  has_many :users, through: :tool_users
+  has_many :users, through: :tool_users, dependent: :destroy
 
   validates :name, presence: true
 

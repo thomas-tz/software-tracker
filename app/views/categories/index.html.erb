@@ -1,35 +1,7 @@
-<table>
-  <tr>
-    <th>Category</th>
-    <th>Tools</th>
-    <th>Users</th>
-  </tr>
-  <% @categories.each do |category| %>
-    <tr>
-      <td><%= link_to category.name, category %></td>
-      <td>
-        <% if category.tools.empty? %>
-          No tools!
-        <% end %>
-        <% category.tools.each do |tool| %>
-          <div><%= link_to tool.name, tool %></div>
-        <% end %>
-      </td>
-      <td>
-        <% category.tools.each do |tool| %>
-          <div><%= @tool_user_count[tool.id] %></div>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<%= render 'index_table', categories: @categories, tool_user_count: @tool_user_count %>
 
-<h2>Uncategorized</h2>
-<ul>
-  <% @uncategorized_tools.each do |tool| %>
-  <li><%= tool.name %></li>
-  <% end %>
-</ul>
+<h3>Uncategorized</h3>
+<%= render "uncategorized", uncategorized_tools: @uncategorized_tools, tool_user_count: @tool_user_count %>
 
 <% flash.each do |type, msg| %>
   <div>
@@ -38,7 +10,7 @@
   </div>
 <% end %>
 
-<h2>Add New Category</h2>
+<h3>Add New Category</h3>
 <%= form_with model: Category.new do |form| %>
   <%= form.label :name %><br>
   <%= form.text_field :name %><br>

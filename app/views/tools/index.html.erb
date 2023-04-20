@@ -1,17 +1,4 @@
-<table>
-  <tr>
-    <th>Tool Name</th>
-    <th>Users</th>
-<!--    <th>Category</th>-->
-  </tr>
-  <% @tools.each do |tool| %>
-    <tr>
-      <td><%= link_to tool.name, tool %></td>
-      <td><%= @user_count[tool.id] %></td>
-<!--      <td><%#= tool.category.name %></td>-->
-    </tr>
-  <% end %>
-</table>
+<%= render 'index_table', tools: @tools, user_count: @user_count %>
 
 <% flash.each do |type, msg| %>
   <div>
@@ -20,7 +7,7 @@
   </div>
 <% end %>
 
-<h2>Add New Tool</h2>
+<h3>Add New Tool</h3>
 <%= form_with model: Tool.new do |form| %>
   <%= form.label :name %><br>
   <%= form.text_field :name %><br>

@@ -1,0 +1,15 @@
+<table>
+  <tr>
+    <th>Tool Name</th>
+    <th></th>
+  </tr>
+  <% user.tools.each do |tool| %>
+    <tr>
+      <td><%= link_to tool.name, tool %></td>
+      <td>
+        <% tool_user = user.tool_users.find { |tu| tu.tool_id == tool.id} %>
+        <%= button_to 'X', tool_user_path(tool_user.id), method: :delete %>
+      </td>
+    </tr>
+  <% end %>
+</table>

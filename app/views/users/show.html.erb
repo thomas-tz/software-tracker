@@ -1,23 +1,9 @@
-<h1><%= @user.full_name %></h1>
+<h2><%= @user.full_name %></h2>
 
 <% if @user.tools.empty? %>
   <p>This guy doesn't use any tools!</p>
 <% else %>
-  <table>
-    <tr>
-      <th>Tool Name</th>
-      <th></th>
-    </tr>
-    <% @user.tools.each do |tool| %>
-      <tr>
-        <td><%= tool.name %></td>
-        <td>
-          <% tool_user = @user.tool_users.find { |tu| tu.tool_id == tool.id} %>
-          <%= button_to 'X', tool_user_path(tool_user.id), method: :delete %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+  <%= render 'table', user: @user %>
 <% end %>
 
 <% flash.each do |type, msg| %>
@@ -25,10 +11,8 @@
     <%= msg %>
   </div>
 <% end %>
-
-<p>Add tools to this user here:</p>
+<br>
 <%= form_with model: ToolUser.new do |form| %>
-  <%= form.label :tool, "Tool" %><br>
   <%= form.collection_select :tool_id, @tools_not_subscribed, :id, :name %>
   <%= form.hidden_field  :user_id, :value => @user.id %>
   <%= form.submit 'Add Tool'%>

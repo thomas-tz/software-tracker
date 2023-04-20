@@ -6,7 +6,7 @@ class ToolsController < ApplicationController
   end
 
   def show
-    @tool = Tool.includes(:users).find(params[:id])
+    @tool = Tool.includes(:users, :category).find(params[:id])
     @users_not_subscribed = User.not_subscribed(@tool)
   end
 
@@ -20,14 +20,11 @@ class ToolsController < ApplicationController
     end
   end
 
-  def update
+  def destroy
     @tool = Tool.find(params[:id])
+    @tool.destroy
 
-    if @tool.update(tool_params)
-      redirect_to tool_path
-    else
-      redirect_to tool_path, alert: @tool.errors.full_messages.to_s
-    end
+    redirect_to tools_path, status: :see_other
   end
 
   private

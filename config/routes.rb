@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  resources :categories, only: [:index, :show, :create]
+  resources :categories, only: [:index, :show, :create, :edit, :update, :destroy]
   resources :category_tools, only: [:update, :destroy]
 
-  resources :tools, only: [:index, :show, :create]
-  resources :users, only: [:index, :show, :create]
+  resources :tools, only: [:index, :show, :create, :edit, :update, :destroy]
+  resources :users, only: [:index, :show, :create, :edit, :update, :destroy]
   resources :tool_users, only: [:create, :destroy]
 end

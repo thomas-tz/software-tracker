@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <th>Tool Name</th>
+    <th>Users</th>
+    <th></th>
+  </tr>
+  <% category.tools.each do |tool| %>
+    <tr>
+      <td><%= link_to tool.name, tool %></td>
+      <td><%= tool_user_count[tool.id].nil? ? 0 : tool_user_count[tool.id] %></td>
+      <td>
+        <%= button_to 'X', category_tool_path(tool.id), method: :delete %>
+      </td>
+    </tr>
+  <% end %>
+</table>
