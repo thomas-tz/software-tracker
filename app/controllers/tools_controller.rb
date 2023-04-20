@@ -1,7 +1,7 @@
 class ToolsController < ApplicationController
   def index
     @tools = Tool.all
-    @user_count = Tool.joins(:tool_users).group(:tool_id).count
+    @user_count = Tool.user_counts
 
   end
 

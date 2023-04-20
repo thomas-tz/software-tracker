@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   def index
     @categories = Category.includes(:tools)
     @uncategorized_tools = Tool.uncategorized
+    @tool_user_count = Tool.user_counts
   end
 
   def show

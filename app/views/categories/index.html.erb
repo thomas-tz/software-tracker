@@ -17,7 +17,7 @@
       </td>
       <td>
         <% category.tools.each do |tool| %>
-          <div><%= tool.users.count %></div>
+          <div><%= @tool_user_count[tool.id] %></div>
         <% end %>
       </td>
     </tr>

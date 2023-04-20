@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show, :create]
   resources :category_tools, only: [:update, :destroy]
 
-  resources :tools, only: [:index, :show, :create, :update]
+  resources :tools, only: [:index, :show, :create]
   resources :users, only: [:index, :show, :create]
   resources :tool_users, only: [:create, :destroy]
 end
