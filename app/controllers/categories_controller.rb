@@ -1,11 +1,12 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.all
+    @categories = Category.includes(:tools)
     @uncategorized_tools = Tool.uncategorized
   end
 
   def show
-    @category = Category.find(params[:id])
+    @category = Category.includes(:tools).find(params[:id])
+    @tools_not_in_category = Tool.not_in_category(@category)
   end
 
   def create

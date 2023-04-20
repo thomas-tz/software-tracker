@@ -14,7 +14,7 @@
         <td><%= tool.name %></td>
         <td><%= tool.users.count %></td>
         <td>
-          <%= button_to '[X]', tool_path(tool.id), method: :patch, params: { tool: { category_id: nil } } %>
+          <%= button_to 'X', category_tool_path(tool.id), method: :delete %>
         </td>
       </tr>
     <% end %>
@@ -29,9 +29,8 @@
 <% end %>
 
 <p>Add tools to this category here:</p>
-<%= form_with model: Tool, method: :patch do |form| %>
+<%= form_with url: category_tool_path, method: :patch do |form| %>
   <%= form.label :tool, 'Tool' %><br>
-  <%= form.collection_select :id, Tool.select { |tool| !@category.tools.include?(tool) }, :id, :name %>
-  <%= form.hidden_field  :category_id, :value => @category.id %>
+  <%= form.collection_select :tool_id, @tools_not_in_category, :id, :name %>
   <%= form.submit 'Add Tool'%>
 <% end %>

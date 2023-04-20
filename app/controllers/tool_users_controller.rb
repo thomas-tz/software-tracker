@@ -10,8 +10,7 @@ class ToolUsersController < ApplicationController
   end
 
   def destroy
-    tool_user = ToolUser.find(params[:id])
-    tool_user.destroy
+    ToolUser.find(params[:id]).destroy
     redirect_to request.referer
   end
 
