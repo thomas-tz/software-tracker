@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-    @tool_count = Tool.user_counts
+    @tool_count = User.tool_counts
   end
 
   def show

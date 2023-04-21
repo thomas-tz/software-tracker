@@ -1,7 +1,11 @@
 <%= render 'index_table', categories: @categories, tool_user_count: @tool_user_count %>
 
 <h3>Uncategorized</h3>
-<%= render "uncategorized", uncategorized_tools: @uncategorized_tools, tool_user_count: @tool_user_count %>
+<% if @uncategorized_tools.empty? %>
+  <p>No uncategorized tools!</p>
+<% else %>
+  <%= render "uncategorized", uncategorized_tools: @uncategorized_tools, tool_user_count: @tool_user_count %>
+<% end %>
 
 <% flash.each do |type, msg| %>
   <div>

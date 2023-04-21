@@ -16,4 +16,6 @@
   <div>
     <p><%= msg %></p>
   </div>
-<% end %>
+<% end %><br>
+
+<%= link_to 'Delete Tool', @tool, data: { turbo_method: :delete }, onclick: "return confirm('Are you sure you want to delete this tool?')"%>

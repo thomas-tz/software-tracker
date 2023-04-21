@@ -12,6 +12,6 @@
   <%= form.label :name %><br>
   <%= form.text_field :name %><br>
   <%= form.label :category_id %><br>
-  <%= form.select :category_id, Category.all.pluck(:name, :id), { include_blank: true } %>
+  <%= form.select :category_id, Category.all.pluck(:name, :id), { include_blank: true } %><br>
   <%= form.submit %>
 <% end %>
