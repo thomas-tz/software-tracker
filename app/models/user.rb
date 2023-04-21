@@ -9,4 +9,8 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def tool_counts
+    User.joins(:tool_users).group(:user_id).count
+  end
 end

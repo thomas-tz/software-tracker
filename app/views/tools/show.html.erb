@@ -10,10 +10,14 @@
   <div>
     <p><%= msg %></p>
   </div>
-<% end %>
-<br>
+<% end %><br>
+
 <%= form_with model: ToolUser.new do |form| %>
   <%= form.collection_select :user_id, @users_not_subscribed, :id, :full_name %>
   <%= form.hidden_field  :tool_id, :value => @tool.id %>
   <%= form.submit 'Add User'%>
-<% end %>
+<% end %><br>
+
+<%= link_to 'Edit Tool', edit_tool_path(@tool) %>
+|
+<%= link_to 'Delete Tool', @tool, data: { turbo_method: :delete }, onclick: "return confirm('Are you sure you want to delete this tool?')"%>

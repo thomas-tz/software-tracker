@@ -1,0 +1,19 @@
+<%= form_with model: @tool do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :category_id %>
+  <%= form.select :category_id, Category.all.pluck(:name, :id), { include_blank: true } %>
+  <%= form.submit %>
+<% end %>
+
+<% if @tool.users.empty? %>
+  <p>No users for this tool!</p>
+<% else %>
+  <%= render 'table', tool: @tool %>
+<% end %>
+
+<% flash.each do |type, msg| %>
+  <div>
+    <p><%= msg %></p>
+  </div>
+<% end %>

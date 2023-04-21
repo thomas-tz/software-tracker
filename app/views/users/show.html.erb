@@ -10,8 +10,8 @@
   <div>
     <%= msg %>
   </div>
-<% end %>
-<br>
+<% end %><br>
+
 <%= form_with model: ToolUser.new do |form| %>
   <%= form.collection_select :tool_id, @tools_not_subscribed, :id, :name %>
   <%= form.hidden_field  :user_id, :value => @user.id %>

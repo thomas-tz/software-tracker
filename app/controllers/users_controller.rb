@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-    @tool_count = User.joins(:tool_users).group(:user_id).count
+    @tool_count = Tool.user_counts
   end
 
   def show
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.includes(:tools).find(params[:id])
   end
 
   def update
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user
     else
-      redirect_to edit_user_path(@user), status: :unprocessable_entity
+      redirect_to edit_user_path(@user), status: :unprocessable_entity, alert: @user.errors.full_messages.to_s
     end
   end
 
