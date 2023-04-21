@@ -1,3 +1,4 @@
+<br>
 <%= form_with model: @user do |form| %>
   <%= form.label :first_name %>
   <%= form.text_field :first_name %>
@@ -5,7 +6,6 @@
   <%= form.text_field :last_name %>
   <%= form.submit %>
 <% end %>
-
 
 <% if @user.tools.empty? %>
   <p>This guy doesn't use any tools!</p>
