@@ -16,4 +16,7 @@
   <%= form.collection_select :tool_id, @tools_not_subscribed, :id, :name %>
   <%= form.hidden_field  :user_id, :value => @user.id %>
   <%= form.submit 'Add Tool'%>
-<% end %>
+<% end %><br>
+
+<%= button_to 'Edit User', edit_user_path(@user) %>
+<%= button_to 'Delete User', user_path(@user), method: :delete%>

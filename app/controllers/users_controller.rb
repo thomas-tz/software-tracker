@@ -25,6 +25,12 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      redirect_to edit_user_path(@user), status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -36,6 +42,9 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:first_name, :last_name)
+    params
+      .require(:user)
+      .permit(:first_name, :last_name)
+      .each_value { |value| value.try(:strip!) }
   end
 end
