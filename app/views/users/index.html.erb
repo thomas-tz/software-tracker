@@ -1,17 +1,18 @@
-<%= render 'index_table', users: @users, tool_count: @tool_count %>
+<div class="row-container">
 
-<% flash.each do |type, msg| %>
-  <div>
-    <p><%= type %></p>
-    <p><%= msg %></p>
+  <div class="table-container drop-shadow">
+    <%= render 'index_table', users: @users, tool_count: @tool_count %>
   </div>
-<% end %>
 
-<h3>Add New User</h3>
-<%= form_with model: User.new do |form| %>
-  <%= form.label :first_name %><br>
-  <%= form.text_field :first_name %><br>
-  <%= form.label :last_name %><br>
-  <%= form.text_field :last_name %><br>
-  <%= form.submit %>
-<% end %>
+  <div class="form-container drop-shadow">
+    <h3>Add New User</h3>
+    <%= form_with model: User.new, html: { class: 'form-vertical' } do |form| %>
+      <%= form.label :first_name %><br>
+      <%= form.text_field :first_name %><br>
+      <%= form.label :last_name %><br>
+      <%= form.text_field :last_name %><br>
+      <%= form.submit %>
+    <% end %>
+  </div>
+
+</div>

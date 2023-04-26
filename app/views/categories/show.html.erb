@@ -1,23 +1,21 @@
-<h2><%= @category.name %></h2>
+<div class="column-container">
+  <h2><%= @category.name %></h2>
 
-<% if @category.tools.empty? %>
-  <p>No tools belong to this category!</p>
-<% else %>
-  <%= render 'table', category: @category, tool_user_count: @tool_user_count %>
-<% end %>
-
-<% flash.each do |type, msg| %>
-  <div>
-    <p><%= type %></p>
-    <p><%= msg %></p>
+  <div class="table-container drop-shadow">
+    <%= render 'table', category: @category, tool_user_count: @tool_user_count %>
   </div>
-<% end %><br>
 
-<%= form_with url: category_tool_path, method: :patch do |form| %>
-  <%= form.collection_select :tool_id, @tools_not_in_category, :id, :name %>
-  <%= form.submit 'Add Tool'%>
-<% end %><br>
+  <div class="form-container drop-shadow">
+    <%= form_with url: category_tool_path, method: :patch, html: { class: 'form-horizontal' } do |form| %>
+      <%= form.collection_select :tool_id, @tools_not_in_category, :id, :name %>
+      <%= form.submit 'Add Tool'%>
+    <% end %>
+  </div>
 
-<%= link_to 'Edit Category', edit_category_path(@category) %>
-|
-<%= link_to 'Delete Category', @category, data: { turbo_method: :delete }, onclick: "return confirm('Are you sure you want to delete this category?')"%>
+  <div class="options">
+    <%= link_to 'Edit Category', edit_category_path(@category) %>
+    |
+    <%= link_to 'Delete Category', @category, data: { turbo_method: :delete }, onclick: "return confirm('Are you sure you want to delete this category?')"%>
+  </div>
+
+</div>

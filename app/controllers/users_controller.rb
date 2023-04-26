@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to users_path
+      redirect_to users_path, notice: 'User successfully created!'
     else
       redirect_to users_path, status: :unprocessable_entity, alert: @user.errors.full_messages.to_s
     end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to @user, notice: 'User successfully updated!'
     else
       redirect_to edit_user_path(@user), status: :unprocessable_entity, alert: @user.errors.full_messages.to_s
     end
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
-    redirect_to users_path, status: :see_other
+    redirect_to users_path, status: :see_other, notice: 'User successfully deleted!'
   end
 
   private

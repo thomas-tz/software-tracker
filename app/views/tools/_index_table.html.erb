@@ -4,11 +4,17 @@
     <th>Users</th>
     <th>Category</th>
   </tr>
-  <% tools.each do |tool| %>
+  <% unless tools.empty? %>
+    <% tools.each do |tool| %>
+      <tr>
+        <td><%= link_to tool.name, tool %></td>
+        <td><%= user_count[tool.id].nil? ? 0 : user_count[tool.id] %></td>
+        <td><%= tool.category.nil? ? 'Uncategorized' : tool.category.name %></td>
+      </tr>
+    <% end %>
+  <% else %>
     <tr>
-      <td><%= link_to tool.name, tool %></td>
-      <td><%= user_count[tool.id].nil? ? 0 : user_count[tool.id] %></td>
-      <td><%= tool.category.nil? ? 'Uncategorized' : tool.category.name %></td>
+      <td colspan="3">No tools found!</td>
     </tr>
   <% end %>
 </table>

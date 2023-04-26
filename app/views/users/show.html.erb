@@ -1,23 +1,23 @@
-<h2><%= @user.full_name %></h2>
+<div class="column-container">
 
-<% if @user.tools.empty? %>
-  <p>This guy doesn't use any tools!</p>
-<% else %>
-  <%= render 'table', user: @user %>
-<% end %>
+  <h2><%= @user.full_name %></h2>
 
-<% flash.each do |type, msg| %>
-  <div>
-    <%= msg %>
+  <div class="table-container drop-shadow">
+    <%= render 'table', user: @user %>
   </div>
-<% end %><br>
 
-<%= form_with model: ToolUser.new do |form| %>
-  <%= form.collection_select :tool_id, @tools_not_subscribed, :id, :name %>
-  <%= form.hidden_field  :user_id, :value => @user.id %>
-  <%= form.submit 'Add Tool'%>
-<% end %><br>
+  <div class="form-container drop-shadow">
+    <%= form_with model: ToolUser.new, html: { class: 'form-horizontal' } do |form| %>
+      <%= form.collection_select :tool_id, @tools_not_subscribed, :id, :name %>
+      <%= form.hidden_field  :user_id, :value => @user.id %>
+      <%= form.submit 'Add Tool'%>
+    <% end %>
+  </div>
 
-<%= link_to 'Edit User', edit_user_path(@user) %>
-|
-<%= link_to 'Delete User', @user, data: { turbo_method: :delete }, onclick: "return confirm('Are you sure you want to delete this user?')"%>
+  <div class="options">
+    <%= link_to 'Edit User', edit_user_path(@user) %>
+    |
+    <%= link_to 'Delete User', @user, data: { turbo_method: :delete }, onclick: "return confirm('Are you sure you want to delete this user?')"%>
+  </div>
+
+</div>

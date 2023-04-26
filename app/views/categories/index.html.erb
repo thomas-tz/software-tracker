@@ -1,22 +1,24 @@
-<%= render 'index_table', categories: @categories, tool_user_count: @tool_user_count %>
+<div class="row-container">
 
-<h3>Uncategorized</h3>
-<% if @uncategorized_tools.empty? %>
-  <p>No uncategorized tools!</p>
-<% else %>
-  <%= render "uncategorized", uncategorized_tools: @uncategorized_tools, tool_user_count: @tool_user_count %>
-<% end %>
+  <div class="column-container">
 
-<% flash.each do |type, msg| %>
-  <div>
-    <p><%= type %></p>
-    <p><%= msg %></p>
+    <div class="table-container drop-shadow">
+      <%= render 'index_table', categories: @categories, tool_user_count: @tool_user_count %>
+    </div>
+
+    <div class="table-container drop-shadow">
+      <%= render "uncategorized", uncategorized_tools: @uncategorized_tools, tool_user_count: @tool_user_count %>
+    </div>
+
   </div>
-<% end %>
 
-<h3>Add New Category</h3>
-<%= form_with model: Category.new do |form| %>
-  <%= form.label :name %><br>
-  <%= form.text_field :name %><br>
-  <%= form.submit %>
-<% end %>
+  <div class="form-container drop-shadow">
+    <h3>Add New Category</h3>
+    <%= form_with model: Category.new, html: { class: 'form-vertical' } do |form| %>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %><br>
+      <%= form.submit %>
+    <% end %>
+  </div>
+
+</div>

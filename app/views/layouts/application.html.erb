@@ -7,12 +7,17 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag 'index' %>
+    <%= stylesheet_link_tag 'table' %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <%= render 'layouts/navbar' %>
+    <%= render 'layouts/flash' %>
     <%= yield %>
+
+    <div class="footer">
+      <%= link_to 'Source on Github', 'https://github.com/thomas-tz/software-tracker', target: '_blank' %>
+    </div>
   </body>
 </html>

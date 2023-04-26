@@ -1,0 +1,21 @@
+<div class="flash-container">
+
+  <% if flash.notice %>
+    <% notices = flash.notice.split(', ') %>
+    <% notices.each do |msg| %>
+      <div class="flash-notice">
+        <%= msg.tr('[""]', '') %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if flash.alert %>
+    <% alerts = flash.alert.split(', ') %>
+    <% alerts.each do |msg| %>
+      <div class="flash-alert">
+        <%= msg.tr('[""]', '') %>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>

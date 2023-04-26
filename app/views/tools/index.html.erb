@@ -1,17 +1,18 @@
-<%= render 'index_table', tools: @tools, user_count: @user_count %>
+<div class="row-container">
 
-<% flash.each do |type, msg| %>
-  <div>
-    <p><%= type %></p>
-    <p><%= msg %></p>
+  <div class="table-container drop-shadow">
+    <%= render 'index_table', tools: @tools, user_count: @user_count %>
   </div>
-<% end %>
 
-<h3>Add New Tool</h3>
-<%= form_with model: Tool.new do |form| %>
-  <%= form.label :name %><br>
-  <%= form.text_field :name %><br>
-  <%= form.label :category_id %><br>
-  <%= form.select :category_id, Category.all.pluck(:name, :id), { include_blank: true } %><br>
-  <%= form.submit %>
-<% end %>
+  <div class="form-container drop-shadow">
+    <h3>Add New Tool</h3>
+    <%= form_with model: Tool.new, html: { class: 'form-vertical'} do |form| %>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %><br>
+      <%= form.label :category_id %><br>
+      <%= form.select :category_id, Category.all.pluck(:name, :id), { include_blank: true } %><br>
+      <%= form.submit %>
+    <% end %>
+  </div>
+
+</div>

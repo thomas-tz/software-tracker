@@ -1,12 +1,21 @@
 <table>
   <tr>
-    <th>Tool Name</th>
+    <th colspan="2">Uncategorized Tools</th>
+  </tr>
+  <tr>
+    <th>Tool</th>
     <th>Users</th>
   </tr>
-  <% uncategorized_tools.each do |tool| %>
-    <tr>
-      <td><%= link_to tool.name, tool %></td>
-      <td><%= tool_user_count[tool.id].nil? ? 0 : tool_user_count[tool.id] %></td>
-    </tr>
+  <% unless uncategorized_tools.empty? %>
+    <% uncategorized_tools.each do |tool| %>
+      <tr>
+        <td><%= link_to tool.name, tool %></td>
+        <td><%= tool_user_count[tool.id].nil? ? 0 : tool_user_count[tool.id] %></td>
+      </tr>
+    <% end %>
+  <% else %>
+  <tr>
+    <td colspan="2">No uncategorized tools!</td>
+  </tr>
   <% end %>
 </table>

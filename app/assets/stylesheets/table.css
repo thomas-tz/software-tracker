@@ -2,6 +2,15 @@ tr {
     border-bottom: 1px solid #ddd;
 }
 
+td {;
+    text-align: center;
+    padding: 10px;
+}
+
+td a {
+    text-decoration: none;
+}
+
 tr:nth-child(even) {
     background-color: #D6EEEE;
 }
