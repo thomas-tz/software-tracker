@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to categories_path
+      redirect_to categories_path, notice: 'New category successfully created!'
     else
       redirect_to categories_path, alert: @category.errors.full_messages.to_s
     end
@@ -30,7 +30,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
 
     if @category.update(category_params)
-      redirect_to @category
+      redirect_to @category, notice: 'Category successfully updated!'
     else
       redirect_to edit_category_path(@category), status: :unprocessable_entity, alert: @category.errors.full_messages.to_s
     end
@@ -40,7 +40,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.destroy
 
-    redirect_to categories_path, status: :see_other
+    redirect_to categories_path, status: :see_other, notice: 'Category successfully deleted!'
   end
 
   private

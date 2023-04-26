@@ -14,7 +14,7 @@ class ToolsController < ApplicationController
     @tool = Tool.new(tool_params)
 
     if @tool.save
-      redirect_to tools_path
+      redirect_to tools_path, notice: 'New tool successfully created!'
     else
       redirect_to tools_path, alert: @tool.errors.full_messages.to_s
     end
@@ -28,7 +28,7 @@ class ToolsController < ApplicationController
     @tool = Tool.find(params[:id])
 
     if @tool.update(tool_params)
-      redirect_to @tool
+      redirect_to @tool, notice: 'Tool successfully updated!'
     else
       redirect_to edit_tool_path(@tool), status: :unprocessable_entity, alert: @tool.errors.full_messages.to_s
     end
@@ -38,7 +38,7 @@ class ToolsController < ApplicationController
     @tool = Tool.find(params[:id])
     @tool.destroy
 
-    redirect_to tools_path, status: :see_other
+    redirect_to tools_path, status: :see_other, notice: 'Tool successfully deleted!'
   end
 
   private
