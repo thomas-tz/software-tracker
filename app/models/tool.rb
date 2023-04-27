@@ -1,4 +1,7 @@
 class Tool < ApplicationRecord
+  include PgSearch::Model
+  multisearchable against: :name
+
   belongs_to :category, optional: true
   has_many :tool_users
   has_many :users, through: :tool_users, dependent: :destroy

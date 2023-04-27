@@ -71,6 +71,7 @@
     <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.5.9, rbenv: 3.1.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.14.3, rbenv: 3.1.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pg (v1.4.6, rbenv: 3.1.3) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pg_search (v2.3.6, rbenv: 3.1.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="public_suffix (v5.0.1, rbenv: 3.1.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puma (v5.6.5, rbenv: 3.1.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="racc (v1.6.2, rbenv: 3.1.3) [gem]" level="application" />
@@ -124,6 +125,8 @@
         <option value="mailer" />
         <option value="migration" />
         <option value="model" />
+        <option value="pg_search:migration:dmetaphone" />
+        <option value="pg_search:migration:multisearch" />
         <option value="resource" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
@@ -154,6 +157,8 @@
         <option value="mailer" />
         <option value="migration" />
         <option value="model" />
+        <option value="pg_search:migration:dmetaphone" />
+        <option value="pg_search:migration:multisearch" />
         <option value="resource" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
@@ -356,6 +361,16 @@
             </subtasks>
           </RakeTaskImpl>
           <RakeTaskImpl description="Prints out your Rack middleware stack" fullCommand="middleware" id="middleware" />
+          <RakeTaskImpl id="pg_search">
+            <subtasks>
+              <RakeTaskImpl id="multisearch">
+                <subtasks>
+                  <RakeTaskImpl description="Rebuild PgSearch multisearch records for a given model" fullCommand="pg_search:multisearch:rebuild[model,schema]" id="rebuild[model,schema]" />
+                  <RakeTaskImpl description="" fullCommand="pg_search:multisearch:rebuild" id="rebuild" />
+                </subtasks>
+              </RakeTaskImpl>
+            </subtasks>
+          </RakeTaskImpl>
           <RakeTaskImpl description="Restart app by touching tmp/restart.txt" fullCommand="restart" id="restart" />
           <RakeTaskImpl description="Generate a cryptographically secure secret key (this is typically used to generate a secret for cookie sessions)" fullCommand="secret" id="secret" />
           <RakeTaskImpl description="Report code statistics (KLOCs, etc) from the application or engine" fullCommand="stats" id="stats" />

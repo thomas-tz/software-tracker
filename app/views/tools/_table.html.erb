@@ -6,7 +6,7 @@
   <% unless tool.users.empty? %>
     <% tool.users.each do |user| %>
       <tr>
-        <td><%= link_to user.full_name, user %></td>
+        <td><%= link_to user.name, user %></td>
         <td>
           <% tool_user = tool.tool_users.find { |tu| tu.user_id == user.id } %>
           <%= button_to 'X', tool_user_path(tool_user.id), method: :delete %>

@@ -77,6 +77,7 @@ nav.nav-bar {
     flex-flow: row nowrap;
     justify-content: center;
     padding: 30px;
+    gap: 30px;
 }
 
 nav ul {
@@ -93,6 +94,14 @@ nav li {
 nav a {
     text-decoration: none;
     text-transform: uppercase;
+}
+
+.search-container {
+    padding-left: 30px;
+}
+
+.search-results > li {
+    padding: 5px;
 }
 
 /*PAGE ITEMS*/

@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  include PgSearch::Model
+  multisearchable against: [:first_name, :last_name]
+
   has_many :tool_users
   has_many :tools, through: :tool_users, dependent: :destroy
 
@@ -6,7 +9,7 @@ class User < ApplicationRecord
 
   scope :not_subscribed, -> (tool) { where.not(id: ToolUser.select(:user_id).where(tool_id: tool.id)) }
 
-  def full_name
+  def name
     "#{first_name} #{last_name}"
   end
 

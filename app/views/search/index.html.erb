@@ -1,0 +1,14 @@
+<div class="column-container">
+  <h2>Search Results</h2>
+  <% unless @search_results.empty? %>
+    <ul class="search-results">
+      <% @search_results.each do |result| %>
+        <li>
+          <%= link_to "#{result.name} (#{result.class})", result %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>We could not find anything that matched your search, sorry!</p>
+  <% end %>
+</div>
