@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
-    first_name { 'Foo' }
-    last_name { 'Bar' }
+    first_name { 'foo' }
+    last_name { 'bar' }
 
     trait :with_tool do
       after(:create) do |user|

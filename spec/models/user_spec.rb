@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  let!(:tool) { create(:tool, :with_user) }
   let!(:user) { create(:user) }
+  let!(:tool) { create(:tool, :with_user) }
 
   describe '#name' do
     it 'is the user\'s first and last name' do
