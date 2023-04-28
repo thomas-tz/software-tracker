@@ -51,9 +51,6 @@ gem "bootsnap", require: false
 # Use PostgreSQL's full text search [https://github.com/Casecommons/pg_search]
 gem 'pg_search'
 
-# Use rspec-rails for testing
-gem 'rspec-rails'
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -62,6 +59,12 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  # Use rspec-rails for testing
+  gem 'rspec-rails'
+
+  # Use factory-bot to create test data
+  gem 'factory_bot_rails'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -75,4 +78,10 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+
+  # Use rspec-rails for testing
+  gem 'rspec-rails'
+
+  # Use factory-bot to create test data
+  gem 'factory_bot_rails'
 end
