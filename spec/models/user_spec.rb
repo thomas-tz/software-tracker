@@ -6,7 +6,7 @@ RSpec.describe User do
 
   describe '#name' do
     it 'is the user\'s first and last name' do
-      expect(user.name).to eq "#{user.first_name} #{user.last_name}"
+      expect(subject.name).to eq "#{subject.first_name} #{subject.last_name}"
     end
   end
 
