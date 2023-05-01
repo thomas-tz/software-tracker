@@ -62,6 +62,7 @@ group :development do
 
   # Use rspec-rails for testing
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
 
   # Use factory-bot to create test data
   gem 'factory_bot_rails'
@@ -81,6 +82,7 @@ group :test do
 
   # Use rspec-rails for testing
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
 
   # Use factory-bot to create test data
   gem 'factory_bot_rails'
