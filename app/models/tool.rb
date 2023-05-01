@@ -8,9 +8,9 @@ class Tool < ApplicationRecord
 
   validates :name, presence: true
 
-  scope :uncategorized, -> { where category: nil }
-  scope :not_in_category, -> (category) {  where.not(category_id: category.id).or(Tool.where(category_id: nil)) }
-  scope :not_subscribed, -> (user) { where.not(id: ToolUser.select(:tool_id).where(user_id: user.id)) }
+  scope :uncategorized, -> { where.missing(:category) }
+  scope :not_in_category, -> (category) {  where.not(category: category).or(Tool.where(category: nil)) }
+  scope :not_subscribed, -> (user) { where.not(id: ToolUser.select(:tool_id).where(user: user)) }
 
   def self.user_counts
     Tool.joins(:tool_users).group(:tool_id).count

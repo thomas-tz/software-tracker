@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
 
-  scope :not_subscribed, -> (tool) { where.not(id: ToolUser.select(:user_id).where(tool_id: tool.id)) }
+  scope :not_subscribed, -> (tool) { where.not(id: ToolUser.select(:user_id).where(tool: tool)) }
 
   def name
     "#{first_name} #{last_name}"

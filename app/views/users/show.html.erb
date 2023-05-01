@@ -9,7 +9,7 @@
   <div class="form-container drop-shadow">
     <%= form_with model: ToolUser.new, html: { class: 'form-horizontal' } do |form| %>
       <%= form.collection_select :tool_id, @tools_not_subscribed, :id, :name %>
-      <%= form.hidden_field  :user_id, :value => @user.id %>
+      <%= form.hidden_field  :user_id, value: @user.id %>
       <%= form.submit 'Add Tool'%>
     <% end %>
   </div>
