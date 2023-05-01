@@ -44,6 +44,6 @@ class ToolsController < ApplicationController
     params
       .require(:tool)
       .permit(:name, :category_id)
-      .each_value { |value| value.try(:strip!) }
+      .transform_values { |value| value&.strip }
   end
 end

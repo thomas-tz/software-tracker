@@ -45,6 +45,6 @@ class CategoriesController < ApplicationController
     params
       .require(:category)
       .permit(:name)
-      .each_value { |value| value.try(:strip!) }
+      .transform_values { |value| value&.strip }
   end
 end

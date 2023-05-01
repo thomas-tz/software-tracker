@@ -44,6 +44,6 @@ class UsersController < ApplicationController
     params
       .require(:user)
       .permit(:first_name, :last_name)
-      .each_value { |value| value.try(:strip!) }
+      .transform_values { |value| value&.strip }
   end
 end
