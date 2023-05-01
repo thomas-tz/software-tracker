@@ -3,11 +3,11 @@
   <div class="column-container">
 
     <div class="table-container drop-shadow">
-      <%= render 'index_table', categories: @categories, tool_user_count: @tool_user_count %>
+      <%= render 'index_table', categories: @categories %>
     </div>
 
     <div class="table-container drop-shadow">
-      <%= render "uncategorized", uncategorized_tools: @uncategorized_tools, tool_user_count: @tool_user_count %>
+      <%= render "uncategorized", uncategorized_tools: @uncategorized_tools %>
     </div>
 
   </div>

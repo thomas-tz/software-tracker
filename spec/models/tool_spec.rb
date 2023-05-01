@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Tool, type: :model do
-  let!(:tool) { create(:tool, :with_user) }
-  let!(:tool_with_category) { create(:tool, :with_category) }
+  let(:tool) { create(:tool, :with_user) }
+  let(:tool_with_category) { create(:tool, :with_category) }
 
   describe '.uncategorized' do
     let(:uncategorized) { described_class.uncategorized }
@@ -24,13 +24,6 @@ RSpec.describe Tool, type: :model do
     let(:not_subscribed) { described_class.not_subscribed(user) }
     it 'is all the tool records not associated with a particular user' do
       expect(not_subscribed).to contain_exactly(tool_with_category)
-    end
-  end
-
-  describe '.user_counts' do
-    let(:user_count) { described_class.user_counts }
-    it 'counts the number of users that are associated with each tool record' do
-      expect(user_count).to eq({ tool.id => tool.users.count })
     end
   end
 end

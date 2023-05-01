@@ -8,7 +8,7 @@
     <% category.tools.each do |tool| %>
       <tr>
         <td><%= link_to tool.name, tool %></td>
-        <td><%= tool_user_count[tool.id].nil? ? 0 : tool_user_count[tool.id] %></td>
+        <td><%= tool.users.size %></td>
         <td>
           <%= button_to 'X', category_tool_path(tool.id), method: :delete %>
         </td>

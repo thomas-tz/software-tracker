@@ -10,7 +10,7 @@
     <% uncategorized_tools.each do |tool| %>
       <tr>
         <td><%= link_to tool.name, tool %></td>
-        <td><%= tool_user_count[tool.id].nil? ? 0 : tool_user_count[tool.id] %></td>
+        <td><%= tool.users.size %></td>
       </tr>
     <% end %>
   <% else %>

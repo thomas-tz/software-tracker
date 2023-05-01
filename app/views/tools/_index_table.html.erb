@@ -8,7 +8,7 @@
     <% tools.each do |tool| %>
       <tr>
         <td><%= link_to tool.name, tool %></td>
-        <td><%= user_count[tool.id].nil? ? 0 : user_count[tool.id] %></td>
+        <td><%= tool.users.size %></td>
         <td><%= tool.category.nil? ? 'Uncategorized' : tool.category.name %></td>
       </tr>
     <% end %>

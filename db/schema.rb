@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_26_234605) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_01_222016) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_234605) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
+    t.integer "users_count", default: 0, null: false
     t.index ["category_id"], name: "index_tools_on_category_id"
   end
 
@@ -51,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_234605) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "last_name"
+    t.integer "tools_count", default: 0, null: false
   end
 
   add_foreign_key "tools", "categories"

@@ -18,7 +18,7 @@
         </td>
         <td>
           <% category.tools.each do |tool| %>
-            <div><%= tool_user_count[tool.id].nil? ? 0 : tool_user_count[tool.id] %></div>
+            <div><%= tool.users.size %></div>
           <% end %>
         </td>
       </tr>

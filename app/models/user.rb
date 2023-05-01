@@ -2,7 +2,7 @@ class User < ApplicationRecord
   include PgSearch::Model
   multisearchable against: [:first_name, :last_name]
 
-  has_many :tool_users
+  has_many :tool_users, counter_cache: :tools_count
   has_many :tools, through: :tool_users, dependent: :destroy
 
   validates :first_name, :last_name, presence: true
@@ -11,9 +11,5 @@ class User < ApplicationRecord
 
   def name
     "#{first_name} #{last_name}"
-  end
-
-  def self.tool_counts
-    User.joins(:tool_users).group(:user_id).count
   end
 end

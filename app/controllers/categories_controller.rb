@@ -1,14 +1,12 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.includes(:tools)
-    @uncategorized_tools = Tool.uncategorized
-    @tool_user_count = Tool.user_counts
+    @categories = Category.includes(tools: :users)
+    @uncategorized_tools = Tool.includes(:users).uncategorized
   end
 
   def show
-    @category = Category.includes(:tools).find(params[:id])
+    @category = Category.includes(tools: :users).find(params[:id])
     @tools_not_in_category = Tool.not_in_category(@category)
-    @tool_user_count = Tool.user_counts
   end
 
   def create
@@ -22,8 +20,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.includes(:tools).find(params[:id])
-    @tool_user_count = Tool.user_counts
+    @category = Category.includes(tools: :users).find(params[:id])
   end
 
   def update

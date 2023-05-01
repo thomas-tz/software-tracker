@@ -1,8 +1,6 @@
 class ToolsController < ApplicationController
   def index
     @tools = Tool.includes(:category).all
-    @user_count = Tool.user_counts
-
   end
 
   def show
