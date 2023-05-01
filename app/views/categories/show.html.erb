@@ -15,7 +15,7 @@
   <div class="options">
     <%= link_to 'Edit Category', edit_category_path(@category) %>
     |
-    <%= link_to 'Delete Category', @category, data: { turbo_method: :delete }, onclick: "return confirm('Are you sure you want to delete this category?')"%>
+    <%= link_to 'Delete Category', @category, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this category?' } %>
   </div>
 
 </div>
