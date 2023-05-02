@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
     if @category.save
       redirect_to categories_path, notice: 'New category successfully created!'
     else
-      redirect_to categories_path, alert: @category.errors.full_messages.to_s
+      redirect_to categories_path, status: :unprocessable_entity, alert: @category.errors.full_messages.to_s
     end
   end
 
@@ -29,8 +29,7 @@ class CategoriesController < ApplicationController
     if @category.update(category_params)
       redirect_to @category, notice: 'Category successfully updated!'
     else
-      redirect_to edit_category_path(@category), status: :unprocessable_entity,
-                                                 alert: @category.errors.full_messages.to_s
+      redirect_to edit_category_path(@category), status: :unprocessable_entity, alert: @category.errors.full_messages.to_s
     end
   end
 

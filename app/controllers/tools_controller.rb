@@ -14,7 +14,7 @@ class ToolsController < ApplicationController
     if @tool.save
       redirect_to tools_path, notice: 'New tool successfully created!'
     else
-      redirect_to tools_path, alert: @tool.errors.full_messages.to_s
+      redirect_to tools_path, status: :unprocessable_entity, alert: @tool.errors.full_messages.to_s
     end
   end
 
