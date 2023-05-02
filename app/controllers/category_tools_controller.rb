@@ -1,7 +1,7 @@
 class CategoryToolsController < ApplicationController
-  def update
-    tool = Tool.find(params[:tool_id])
-    tool.category_id = params[:id]
+  def create
+    tool = Tool.find(params[:id])
+    tool.category_id = params[:category_id]
 
     if tool.save
       redirect_to request.referer

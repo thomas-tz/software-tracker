@@ -6,8 +6,9 @@
   </div>
 
   <div class="form-container drop-shadow">
-    <%= form_with url: category_tool_path, method: :patch, html: { class: 'form-horizontal' } do |form| %>
-      <%= form.collection_select :tool_id, @tools_not_in_category, :id, :name %>
+    <%= form_with url: category_tools_path, html: { class: 'form-horizontal' } do |form| %>
+      <%= form.collection_select :id, @tools_not_in_category, :id, :name %>
+      <%= form.hidden_field :category_id, value: @category.id %>
       <%= form.submit 'Add Tool'%>
     <% end %>
   </div>
