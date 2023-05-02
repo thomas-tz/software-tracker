@@ -9,6 +9,6 @@ class Tool < ApplicationRecord
   validates :name, presence: true
 
   scope :uncategorized, -> { where.missing(:category) }
-  scope :not_in_category, -> (category) {  where.not(category: category).or(Tool.where(category: nil)) }
-  scope :not_subscribed, -> (user) { where.not(id: ToolUser.select(:tool_id).where(user: user)) }
+  scope :not_in_category, ->(category) { where.not(category:).or(Tool.where(category: nil)) }
+  scope :not_subscribed, ->(user) { where.not(id: ToolUser.select(:tool_id).where(user:)) }
 end

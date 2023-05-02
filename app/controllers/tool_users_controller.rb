@@ -15,6 +15,7 @@ class ToolUsersController < ApplicationController
   end
 
   private
+
   def tool_user_params
     params.require(:tool_user).permit(:user_id, :tool_id)
   end

@@ -29,7 +29,8 @@ class CategoriesController < ApplicationController
     if @category.update(category_params)
       redirect_to @category, notice: 'Category successfully updated!'
     else
-      redirect_to edit_category_path(@category), status: :unprocessable_entity, alert: @category.errors.full_messages.to_s
+      redirect_to edit_category_path(@category), status: :unprocessable_entity,
+                                                 alert: @category.errors.full_messages.to_s
     end
   end
 
@@ -41,6 +42,7 @@ class CategoriesController < ApplicationController
   end
 
   private
+
   def category_params
     params
       .require(:category)

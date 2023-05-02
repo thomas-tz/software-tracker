@@ -40,6 +40,7 @@ class ToolsController < ApplicationController
   end
 
   private
+
   def tool_params
     params
       .require(:tool)
